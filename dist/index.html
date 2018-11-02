@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <dat-gui style="position: absolute;left: 10px;top: 10px">
+      <dat-folder name="string">
+        <dat-value label="stringValue1" v-model="stringValue1"></dat-value>
+        <dat-value label="stringValue2" v-model="stringValue2" :accepted-values="['hellow','vue','and', 'dat,gui']"></dat-value>
+      </dat-folder>
+      <dat-folder name="number">
+        <dat-value label="numberValue1" v-model="numberValue1"></dat-value>
+        <dat-value label="numberValue2" v-model="numberValue2" :accepted-values="{Stopped: 0, Slow: 10, Fast: 50}"></dat-value>
+        <dat-value label="numberValue3" v-model="numberValue3" :min="0" :max="100"></dat-value>
+      </dat-folder>
+      <dat-folder name="color">
+        <dat-color label="color0" v-model="color0"></dat-color>
+        <dat-color label="color1" v-model="color2"></dat-color>
+        <dat-color label="color2" v-model="color2"></dat-color>
+        <dat-color label="color3" v-model="color3"></dat-color>
+      </dat-folder>
+      <dat-value label="button" @click="handleClick"></dat-value>
+    </dat-gui>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.97.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.3/build/dat.gui.min.js"></script>
+  <script src="./VueDatGui.umd.js"></script>
+  <SCript>
+    /* global Vue VueDatGui */
+    /* eslint-disable no-unused-vars */
+    Vue.use(VueDatGui)
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        stringValue1: 'a string value',
+        stringValue2: 'hellow',
+        numberValue1: 10,
+        numberValue2: 10,
+        numberValue3: 10,
+        color0: "#ffae23",
+        color1: [ 0, 128, 255 ],
+        color2: [ 0, 128, 255, 0.3 ],
+        color3: { h: 350, s: 0.9, v: 0.3 }
+      },
+      methods: {
+        handleClick () {
+          alert('click')
+        }
+      }
+    })
+  </SCript>
+</body>
+</html>
