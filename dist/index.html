@@ -8,7 +8,7 @@
 </head>
 <body>
   <div id="app">
-    <dat-gui style="position: absolute;left: 10px;top: 10px">
+    <dat-gui style="position: absolute;right: 10px;top: 10px;z-index: 1000;">
       <dat-folder name="string">
         <dat-value label="stringValue1" v-model="stringValue1"></dat-value>
         <dat-value label="stringValue2" v-model="stringValue2" :accepted-values="['hellow','vue','and', 'dat,gui']"></dat-value>
@@ -26,15 +26,21 @@
       </dat-folder>
       <dat-value label="button" @click="handleClick"></dat-value>
     </dat-gui>
+    <vue-json-pretty
+      :data="json"
+    >
+    </vue-json-pretty>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.97.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.3/build/dat.gui.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-json-pretty@1.4.1/vue-json-pretty.min.js"></script>
   <script src="./VueDatGui.umd.js"></script>
   <SCript>
     /* global Vue VueDatGui */
     /* eslint-disable no-unused-vars */
     Vue.use(VueDatGui)
+    Vue.component('vue-json-pretty', VueJsonPretty.default)
 
     var app = new Vue({
       el: '#app',
@@ -48,6 +54,11 @@
         color1: [ 0, 128, 255 ],
         color2: [ 0, 128, 255, 0.3 ],
         color3: { h: 350, s: 0.9, v: 0.3 }
+      },
+      computed: {
+        json () {
+          return this.$data
+        }
       },
       methods: {
         handleClick () {
